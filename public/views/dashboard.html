@@ -1,0 +1,12 @@
+<div>
+  <h1>Welcome {{user.name}}!</h1>
+  <form ng-submit="addListItem()">
+    <input type="text" ng-model="newListItem.title" placeholder="Title">
+    <input type="text" placeholder="Description" ng-model="newListItem.description">
+    <select ng-model="newListItem.partnerId">
+      <option ng-repeat="partner in users" value="{{partner._id}}">{{partner.name}}</option>
+    </select>
+    <input type="submit" value="Add to List">
+  </form>
+  <h3>Before I die I want to:</h3>
+</div>
