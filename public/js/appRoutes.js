@@ -9,4 +9,8 @@ angular.module('appRoutes', []).config(['$routeProvider', function($routeProvide
     templateUrl:'views/dashboard.html',
     controller: 'dashboardsController'
   })
+  .when('/user/:id',{
+    templateUrl:'views/show.html',
+    controller: 'dashboardsController'
+  })
 }]);

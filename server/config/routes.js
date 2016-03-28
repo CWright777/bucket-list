@@ -11,6 +11,15 @@ module.exports = function(app){
   app.post('/users',function(req,res){
     Users.create(req,res);
   }),
+  app.get('/listItems',function(req,res){
+    ListItems.index(req,res);
+  })
+  app.get('/listItems/:id',function(req,res){
+    ListItems.show(req,res);
+  })
+  app.get('/listItemsc/:id',function(req,res){
+    ListItems.complete(req,res);
+  })
   app.post('/listItems',function(req,res){
     ListItems.create(req,res);
   })

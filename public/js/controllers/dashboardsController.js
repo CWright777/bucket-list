@@ -1,4 +1,7 @@
 angular.module('dashboardCtrl', []).controller('dashboardsController', function($scope,User,ListItem,$routeParams,$location){
+  ListItem.show($routeParams.id,function(listItems){
+    $scope.listItems = listItems;
+  })
   User.index(function(users){
     for(var user of users){
       if(user._id == $routeParams.id){
@@ -11,7 +14,16 @@ angular.module('dashboardCtrl', []).controller('dashboardsController', function(
   User.show($routeParams.id, function(user){
     $scope.user = user;
   })
-  ListItem.create($scope.newListItem,function(listItems) {
-    $scope.listItems = listItems;
-  })
+  $scope.addListItem = function(){
+    $scope.newListItem.userId = $routeParams.id;
+    ListItem.create($scope.newListItem,function(listItems) {
+      $scope.listItems = listItems;
+    })
+  }
+  $scope.complete = function(){
+    ListItem.complete($routeParams.id,function(listItems){
+      $scope.complete = listItems
+    })
+  }
+  $scope.complete()
 })

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
-mongoose.connect('mongodb://localhost/BucketList')
+mongoose.connect('mongodb://localhost/bucketList5')
 
 var models_path = __dirname + '/../models'
 

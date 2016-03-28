@@ -9,4 +9,9 @@
     <input type="submit" value="Add to List">
   </form>
   <h3>Before I die I want to:</h3>
+  <p ng-repeat="item in listItems">{{item._user.name}} | {{item.title}} -
+  {{item.description}} - {{item.created_at}}
+  </p>
+  <h3>List of Other users</h3>
+  <p ng-repeat="user in users"><a href="#/user/{{user._id}}">{{user.name}}</a></p>
 </div>
