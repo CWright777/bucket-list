@@ -5,7 +5,7 @@ angular.module('appRoutes', []).config(['$routeProvider', function($routeProvide
     templateUrl:'views/login.html',
     controller: 'usersController'
   })
-  .when('/dashboard/:id',{
+  .when('/dashboard',{
     templateUrl:'views/dashboard.html',
     controller: 'dashboardsController'
   })

@@ -1,6 +1,9 @@
-angular.module('dashboardCtrl', []).controller('dashboardsController', function($scope,User,ListItem,$routeParams,$location,$cookies){
+  angular.module('dashboardCtrl', []).controller('dashboardsController', function($scope,User,ListItem,$location,$cookies,$routeParams){
   ListItem.show($routeParams.id,function(listItems){
     $scope.listItems = listItems;
+  })
+  ListItem.show($cookies.userId,function(listItem){
+    $scope.listItem = listItem;
   })
   User.index(function(users){
     for(var user of users){
@@ -15,12 +18,16 @@ angular.module('dashboardCtrl', []).controller('dashboardsController', function(
     $scope.user = user;
   })
   $scope.addListItem = function(){
-    $scope.newListItem.userId = $routeParams.id;
+    $scope.newListItem.userId = $cookies.userId;
     ListItem.create($scope.newListItem,function(listItems) {
       $scope.listItems = listItems;
     })
   }
   $scope.changeStatus = function(listItemId){
     ListItem.update(listItemId);
+  }
+  $scope.logOut = function(){
+    $cookies.userId = undefined;
+    $location.path('/')
   }
 })
