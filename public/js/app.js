@@ -4,5 +4,6 @@ angular.module('bucketListApp',[
     'usersCtrl',
     'dashboardCtrl',
     'userService',
-    'listItemService'
+    'listItemService',
+    'ngCookies'
 ])
