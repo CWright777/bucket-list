@@ -17,10 +17,10 @@ module.exports = function(app){
   app.get('/listItems/:id',function(req,res){
     ListItems.show(req,res);
   })
-  app.get('/listItemsc/:id',function(req,res){
-    ListItems.complete(req,res);
-  })
   app.post('/listItems',function(req,res){
     ListItems.create(req,res);
+  })
+  app.put('/listItems/:id',function(req,res){
+    ListItems.update(req,res);
   })
 };

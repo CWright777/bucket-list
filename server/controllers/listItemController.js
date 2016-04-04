@@ -41,21 +41,7 @@ module.exports = {
       }
     })
   },
-  complete: function(req,res){
-    ListItem.find({$or: [{'_user': req.params.id}, {'_partner': req.params.id}]})
-    .and([{"status": true}])
-    .populate('_partner')
-    .populate('_user')
-    .exec(function(err,listItems){
-      if(err){
-        console.log(err);
-      } else {
-        res.json(listItems);
-      }
-    })
-  },
   create: function(req,res){
-    console.log(req.body)
     var newListItem = new ListItem({
       title: req.body.title,
       description: req.body.description,
@@ -63,7 +49,6 @@ module.exports = {
       _user: req.body.userId,
       status: false
     })
-    console.log(newListItem)
     User.findOneAndUpdate({_id: req.body.userId},
     {$push: {"users": newListItem }},
     function(err,user){
@@ -87,5 +72,20 @@ module.exports = {
         })
       }
     })
+  },
+  update: function(req,res){
+      ListItem.findOne({_id: req.params.id}, 
+                     function(err,listItem){
+                       if(err){
+                        console.log(err)
+                       } else {
+                          if (listItem.status == true){
+                            listItem.status = false;
+                          } else {
+                            listItem.status = true;
+                          }
+                          listItem.save()
+                       }
+                     })
   }
 }

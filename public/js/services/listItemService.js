@@ -14,9 +14,7 @@ angular.module('listItemService', []).service('ListItem', ['$http', function($ht
       callback(listItems);
     })
   }
-  this.complete = function(userid,callback){
-    $http.get('/listItemsc/' + userid).success(function(listItems){
-      callback(listItems);
-    })
+  this.update = function(listItemId){
+    $http.put('/listItems/' + listItemId)
   }
 }])

@@ -20,10 +20,7 @@ angular.module('dashboardCtrl', []).controller('dashboardsController', function(
       $scope.listItems = listItems;
     })
   }
-  $scope.complete = function(){
-    ListItem.complete($routeParams.id,function(listItems){
-      $scope.complete = listItems
-    })
+  $scope.changeStatus = function(listItemId){
+    ListItem.update(listItemId);
   }
-  $scope.complete()
 })
