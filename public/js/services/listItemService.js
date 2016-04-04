@@ -11,6 +11,7 @@ angular.module('listItemService', []).service('ListItem', ['$http', function($ht
   }
   this.show = function(userid,callback){
     $http.get('/listItems/' + userid).success(function(listItems){
+      console.log(listItems)
       callback(listItems);
     })
   }

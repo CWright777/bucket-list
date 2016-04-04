@@ -3,14 +3,15 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User')
 var ListItem = mongoose.model('ListItem');
 
-var getListItems = function(req,res){
-  ListItem.find({})
+var getListItems = function(req,res,userId){
+  ListItem.find({$or: [{'_user': userId}, {'_partner': userId}]})
   .populate('_partner')
   .populate('_user')
   .exec(function(err,listItems){
     if(err){
       console.log(err);
     } else {
+      console.log(listItems)
       res.json(listItems);
     }
   })
@@ -33,11 +34,12 @@ module.exports = {
     ListItem.find({$or: [{'_user': req.params.id}, {'_partner': req.params.id}]})
     .populate('_partner')
     .populate('_user')
-    .exec(function(err,listItems){
+    .exec(function(err,listItem){
       if(err){
         console.log(err);
       } else {
-        res.json(listItems);
+        console.log('das')
+        res.json(listItem);
       }
     })
   },
@@ -65,7 +67,7 @@ module.exports = {
                 if(listItemErr){
                   console.log(listItemErr);
                 } else {
-                  getListItems(req,res);
+                  getListItems(req,res,req.body.userId)
                 }
             })
           }
