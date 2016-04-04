@@ -2,8 +2,10 @@
 <h2>Done</h2>
 <div ng-repeat="item in listItems | filter:{status: false}">
   {{item._user.name}} {{item.title}} {{item.description}} <input type="checkbox" ng-model="item.status" ng-change="changeStatus(item._id)"> 
+  - {{item.created_at | date: format:timezone}}
 </div>
 <h2>Pending</h2>
 <div ng-repeat="item in listItems | filter:{status: true}">
-  {{item._user.name}} {{item.title}} {{item.description}} <input type="checkbox" ng-model="item.status" ng-change="changeStatus(item._id)"> 
+  {{item._user.name}} | {{item.title}} {{item.description}} <input type="checkbox" ng-model="item.status" ng-change="changeStatus(item._id)"> 
+  - {{item.created_at | date: format:timezone}}
 </div>
