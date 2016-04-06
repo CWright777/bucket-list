@@ -1,7 +1,11 @@
 {
-  "dependencies" : {
-        "body-parser": "latest",
-        "express": "latest",
-        "mongoose": "latest"
-      }
+  "dependencies": {
+    "body-parser": "latest",
+    "bourbon": "^4.2.6",
+    "express": "latest",
+    "mongoose": "latest"
+  },
+  "devDependencies": {
+    "node-bourbon": "^4.2.8"
+  }
 }
